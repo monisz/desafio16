@@ -1,6 +1,6 @@
-<div class="container p-5 my-5 bg-light">
-  <h1 style="color:blue">Ingrese Producto</h1>
-  <form action="/productos" method="POST" onsubmit="return sendProduct()" {{!-- id="form" --}}>
+<div class="container p-3 my-4 bg-light">
+  <h2 style="color:blue">Ingrese Producto</h2>
+  <form action="/productos" method="POST" onsubmit="return sendProduct()" id="formProducts">
     <div class="mb-3 mt-3">
       <label for="title" class="form-label">Nombre</label>
       <input type="text" class="form-control" id="title" placeholder="Ingrese el nombre del producto" name="title" required>
@@ -14,37 +14,22 @@
       <input type="url" class="form-control" id="thumbnail" placeholder="Ingrese imagen" name="thumbnail" required>
     </div>
     <button type="submit" class="btn btn-success" id="send">Cargar producto</button>
-    {{!-- <div id="listaProductos"></div> --}}
   </form>
 </div>
 
-<div class="container p-4 my-5 bg-light" >
-    <h1 style="color:blue">Vista de Productos</h1><br>
-    {{#if products}}
-    <table class="table table-dark">
-        <thead>
-            <th>Nombre</th>
-            <th>Precio</th>
-            <th>Foto</th>
+<div class="container p-3 my-4 bg-light" >
+    <h2 style="color:blue">Vista de Productos</h2><br>
+    <table class="table table-dark" >
+        <thead id="titles">
         </thead>
-        {{#each products}}
-        <tbody id="vistaProductos">
-            <tr>
-                <td>{{title}}</td>
-                <td>{{price}}</td>
-                <td><img src="{{thumbnail}}" height="50rem"></td>
-            </tr>
+        <tbody id="listProducts">
         </tbody>
-        {{/each}}
     </table>
-    {{else}}
-    <h3 style="background-color:aquamarine">No se encontraron productos</h3><br>
-    {{/if}}
 </div>
 
-<div class="container p-5 my-5 bg-light">
-  <h1 style="color:blue">Centro de mensajes</h1>
-  <form onsubmit="return sendMessage()" >
+<div class="container p-3 my-4 bg-light">
+  <h2 style="color:blue">Centro de mensajes</h2>
+  <form onsubmit="return sendMessage()">
     <div class="mb-3 mt-3">
       <input type="email" class="form-control" id="email" placeholder="Ingrese su email" required/>
     </div>

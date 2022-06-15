@@ -3,7 +3,7 @@ const socket = io();
 //Mensajes
 const sendMessage = () => {
     const email = document.getElementById("email").value;
-    const date = String(new Date().toDateString() + new Date().toLocaleTimeString());
+    const date = String(new Date().toDateString() + ' ' + new Date().toLocaleTimeString());
     const text = document.getElementById("text").value;
     const message = { email, date, text };
     socket.emit("newMessage", message);
@@ -25,6 +25,7 @@ const showMessage = (message) => {
 const addMessage = (messages) => {
     const allMessages = messages.map(message => showMessage(message)).join(" ");
     document.getElementById("messages").innerHTML = allMessages;
+    document.getElementById("text").value = '';
 };
 
 socket.on('messages', (messages) => {
@@ -47,16 +48,30 @@ const showProduct = (product) => {
     const { title, price, thumbnail } = product;
     return `
         <tr>
-            <td>${title}}</td>
-            <td>${price}}</td>
+            <td>${title}</td>
+            <td>${price}</td>
             <td><img src="${thumbnail}" height="50rem"></td>
         </tr>
     `;
 };
 
 const addProduct = (products) => {
-    const allProducts = products.map(product => showProduct(product)).join(" ");
-    document.getElementById("vistaProductos").innerHTML = allProducts;
+    if (products.length == 0)
+        document.getElementById("titles").innerHTML = `
+            <h3 style="background-color:aquamarine; color:black">No se encontraron productos</h3><br>
+        `;
+    else {
+        document.getElementById("titles").innerHTML = `
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Foto</th>
+        `;
+        const allProducts = products.map(product => showProduct(product)).join(" ");
+        document.getElementById("listProducts").innerHTML = allProducts;
+        document.getElementById("title").value = '';
+        document.getElementById("price").value = '';
+        document.getElementById("thumbnail").value = '';
+    }      
 };
 
 socket.on('products', (allProducts) => {

@@ -8,8 +8,6 @@ const app = express();
 const httpServer = new HttpServer(app);
 const ioServer = new SocketServer(httpServer);
 
-const Container = require('./container');
-
 const optionsMysql = {
     client: 'mysql',
     connection: {
@@ -22,58 +20,22 @@ const optionsMysql = {
 
 const knexMysql = Knex(
     optionsMysql
-);
-
+    );
+    
 const optionsSqlite = {
     client: 'sqlite3',
     connection: { filename: './DB/ecommerce.sqlite' },
     useNullAsDefault: true
 };
-
+    
 const knexSqlite = Knex(
     optionsSqlite
 );
 
-
-const defTableProducts = async () => {
-    await knexMysql.schema.dropTableIfExists('productos');
-    await knexMysql.schema.createTable('productos', table => {
-        table.increments('id').primary().notNullable(),
-        table.string('title',20).notNullable(),
-        table.float('price'),
-        table.string('thumbnail')
-    });
-    await knexMysql('productos').insert({
-        title: 'Mochila',
-        price: 200,
-        thumbnail: "https://cdn3.iconfinder.com/data/icons/education-209/64/pencil-pen-stationery-school-128.png"
-    });
-    await knexMysql.from('productos').select('*')
-        .then((rows) => console.log("de def ", rows));
-    console.log('paso x def productos')
-};
-
-defTableProducts();
-
-const defTableMessages = async () => {
-    await knexSqlite.schema.dropTableIfExists('messages');
-    await knexSqlite.schema.createTable('messages', table => {
-        table.string('email',50).notNullable(),
-        table.date('date'),
-        table.string('text',100)
-    });
-    await knexSqlite.from('messages').select('*')
-        .then((rows) => console.log("de def ", rows));
-    console.log('paso x def messages')
-};
-
-defTableMessages();
-
-
+const Container = require('./container');
 const tableProducts = new Container (optionsMysql, 'productos');
 const tableMessages = new Container (optionsSqlite, 'messages');
-
-
+        
 app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -97,7 +59,6 @@ app.get('/', (req, res) => {
     }) ();
 });
 
-
 //Para agregar un producto
 app.post('/productos', (req, res) => {
     const newProduct = req.body;
@@ -119,7 +80,6 @@ ioServer.on('connection', (socket) => {
         socket.emit('messages', await tableMessages.getAll());  
         socket.emit('products', await tableProducts.getAll());  
     }) ();
-
 
     socket.on("newMessage", (message) => {
         const saveMessage = (async (message) => {
