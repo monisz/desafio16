@@ -1,0 +1,62 @@
+[
+  {
+    "title": "Lápiz",
+    "price": "80",
+    "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/pencil-pen-stationery-school-128.png",
+    "id": 1
+  },
+  {
+    "title": "Escuadra",
+    "price": "120",
+    "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-128.png",
+    "id": 2
+  },
+  {
+    "title": "Calculadora",
+    "price": "500",
+    "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-128.png",
+    "id": 3
+  },
+  {
+    "title": "Pizarrón",
+    "price": "800",
+    "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/board-math-class-school-128.png",
+    "id": 4
+  },
+  {
+    "title": "Microscopio",
+    "price": "1000",
+    "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/microscope-lab-science-school-128.png",
+    "id": 5
+  },
+  {
+    "title": "Cuaderno",
+    "price": "400",
+    "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/book-note-paper-school-128.png",
+    "id": 6
+  },
+  {
+    "title": "Mochila",
+    "price": "500",
+    "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/bag-pack-container-school-128.png",
+    "id": 7
+  },
+  {
+    "title": "gfdgdfg",
+    "price": "5156",
+    "thumbnail": "https://www.iconfinder.com/icons/2824443/pen_pencil_school_stationery_icon",
+    "id": 8
+  },
+  {
+    "title": "segundo cliente",
+    "price": "51456",
+    "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/microscope-lab-science-school-128.png",
+    "id": 9
+  },
+  {
+    "title": "prueba en 16",
+    "price": "465",
+    "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/bag-pack-container-school-128.png",
+    "id": 10
+  }
+]
